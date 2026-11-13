@@ -1,0 +1,190 @@
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes btnRipple {
+  from {
+    transform: scale(0);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+#top {
+  animation: fadeSlideDown 0.6s ease both;
+}
+#top img {
+  animation: floatIcon 3.2s ease-in-out infinite;
+}
+#data {
+  animation: popIn 0.55s cubic-bezier(0.26, 1.14, 0.44, 1) 0.15s both;
+}
+
+#data input,
+#data select {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+#data input:focus,
+#data select:focus {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.06);
+  box-shadow: 0 0 0 3px currentColor;
+  outline: none;
+}
+#data input[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.25s ease;
+}
+#data input[type="submit"]:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+  box-shadow: 0 10px 20px -8px black;
+  background-color: rgb(75, 147, 209);
+  color: white;
+}
+#data input[type="submit"]:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: btnRipple 0.6s ease-out forwards;
+}
+.shake {
+  animation: shake 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+* {
+  margin: 0;
+}
+#data {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgb(75, 147, 209);
+  height: 50px;
+}
+#top {
+  text-align: center;
+  background-color: rgb(75, 147, 209);
+  color: white;
+  font-size: 130%;
+}
+#tab {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 200px;
+}
+#tab table {
+  border: 3px solid rgb(75, 147, 209);
+  border-radius: 10px;
+  padding: 10px;
+  width: 700px;
+  height: 350px;
+  text-align: center;
+  color: rgb(75, 147, 209);
+  transition: 0.3s;
+}
+#tab table:hover {
+  background-color: rgb(75, 147, 209);
+  color: white;
+  width: 710px;
+}
+#tab th {
+  font-size: 110%;
+}
+#value {
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+}
+#unit {
+  height: 30px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+}
+#submit {
+  height: 30px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  color: rgb(75, 147, 209);
+}

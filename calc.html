@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Length Unit Converter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="top">
+      <img src="logo.png" alt="icon" />
+      <br />
+      <h1>Length Unit Converter</h1>
+    </div>
+
+    <div id="data">
+      <form action="calculate.php" method="post">
+        <input
+          type="number"
+          name="value"
+          id="value"
+          step="any"
+          placeholder="Value"
+        />
+
+        <select name="unit" id="unit">
+          <option value="Kilometer">Kilometer</option>
+          <option value="Meter">Meter</option>
+          <option value="Decimeter">Decimeter</option>
+          <option value="Centimeter">Centimeter</option>
+          <option value="Millimeter">Millimeter</option>
+          <option value="Inch">Inch</option>
+          <option value="Foot">Foot</option>
+        </select>
+
+        <input type="submit" id="submit" value="Convert" />
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var form = document.querySelector("#data form");
+        var submitBtn = form
+          ? form.querySelector('input[type="submit"]')
+          : null;
+        var valueInput = document.getElementById("value");
+
+        if (submitBtn) {
+          submitBtn.addEventListener("click", function (e) {
+            var rect = submitBtn.getBoundingClientRect();
+            var size = Math.max(rect.width, rect.height);
+            var ripple = document.createElement("span");
+            ripple.className = "ripple";
+            ripple.style.width = ripple.style.height = size + "px";
+            ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+            ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+            submitBtn.appendChild(ripple);
+            setTimeout(function () {
+              ripple.remove();
+            }, 600);
+          });
+        }
+
+        if (form && valueInput) {
+          form.addEventListener("submit", function (e) {
+            var v = parseFloat(valueInput.value);
+            if (isNaN(v) || v <= 0) {
+              e.preventDefault();
+              valueInput.classList.add("shake");
+              valueInput.focus();
+              setTimeout(function () {
+                valueInput.classList.remove("shake");
+              }, 500);
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
